@@ -1,30 +1,5 @@
 <template>
-  <div>
-    <h1>New Daily Usage Record</h1>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="date">Date:</label>
-        <input type="date" v-model="form.date" required />
-      </div>
-      <div>
-        <label for="route">Route:</label>
-        <select v-model="form.route_id" required>
-          <option v-for="route in routes" :key="route.id" :value="route.id">{{ route.name }}</option>
-        </select>
-      </div>
-      <div>
-        <label for="equipment_type">Equipment Type:</label>
-        <select v-model="form.equipment_type_id" required>
-          <option v-for="type in equipmentTypes" :key="type.id" :value="type.id">{{ type.name }}</option>
-        </select>
-      </div>
-      <div>
-        <label for="quantity">Quantity:</label>
-        <input type="number" v-model="form.quantity" required />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+  <!-- ... -->
 </template>
 
 <script>
@@ -68,7 +43,7 @@ export default {
     },
     submitForm() {
       axios.post('/daily_usages', this.form)
-        .then(response => {
+        .then(() => {  // Removed 'response' as it's not used
           alert('Daily usage record created successfully!');
           this.$router.push('/daily_usages');
         })
